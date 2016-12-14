@@ -36,8 +36,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 if (TextUtils.isEmpty(account) || TextUtils.isEmpty(psw)) {
                     Toast.makeText(this, "帐号或密码不能为空", Toast.LENGTH_SHORT).show();
                 } else {
-                    MyDB mydb = new MyDB(this);
+                    MyDB mydb = new MyDB(getApplicationContext());
                     if (mydb.confirm(account, psw)) {
+                        MyApp.account=account;
                         Intent intent = new Intent(this, MainActivity.class);
                         startActivity(intent);
                         finish();

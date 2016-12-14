@@ -16,8 +16,12 @@ public class MySql extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        String sql = "create table User(id integer primary key autoincrement , account text , psw text , sex text , birthday text )";
+        String sql = "create table User(id integer primary key autoincrement , account text , psw text , sex text , birthday text , sign text)";
+        String sql2 = "create table Diary(id integer primary key autoincrement , account text , time text , title text , content text)";
+        String sql3 = "create table Birthday(id integer primary key autoincrement , account text , name text , birthday text)";
         db.execSQL(sql);
+        db.execSQL(sql2);
+        db.execSQL(sql3);
     }
 
     @Override

@@ -33,7 +33,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         String account = mAccount.getText().toString().trim();
         String psw = mPsw.getText().toString().trim();
         String confirmPsw = mConfirmPsw.getText().toString().trim();
-        MyDB myDB = new MyDB(this);
+        MyDB myDB = new MyDB(getApplicationContext());
         if (TextUtils.isEmpty(account) || TextUtils.isEmpty(psw)) {
             Toast.makeText(this, "帐号或者密码不能为空", Toast.LENGTH_SHORT).show();
             return;
@@ -43,6 +43,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         }
         if (myDB.add(account, psw)) {
             Toast.makeText(this, "注册成功", Toast.LENGTH_SHORT).show();
+            MyApp.account = account;
             Intent intent = new Intent(this, MainActivity.class);
             startActivity(intent);
         } else {
