@@ -7,6 +7,7 @@ import java.util.List;
 
 /**
  * Created by freestar on 2016/12/14.
+ * 日记适配器
  */
 
 public class DiaryAdapter extends BaseQuickAdapter<Diary, BaseViewHolder> {

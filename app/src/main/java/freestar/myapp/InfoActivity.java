@@ -48,6 +48,7 @@ public class InfoActivity extends AppCompatActivity implements View.OnClickListe
         mBirthday = (TextView) findViewById(R.id.tv_birthday);
         mSex = (TextView) findViewById(R.id.tv_sex);
         mSign = (TextView) findViewById(R.id.tv_sign);
+        //从数据库获得用户信息并设置
         MyDB myDB = new MyDB(getApplicationContext());
         User user = myDB.getUser();
         mAccount.setText(MyApp.account);
@@ -78,6 +79,7 @@ public class InfoActivity extends AppCompatActivity implements View.OnClickListe
                 startActivityForResult(intent, 3);
                 break;
             case R.id.rl_birthday:
+                //修改生日日期
                 final Calendar calendar = Calendar.getInstance();
                 new DatePickerDialog(this, new DatePickerDialog.OnDateSetListener() {
                     @Override
@@ -91,6 +93,7 @@ public class InfoActivity extends AppCompatActivity implements View.OnClickListe
                 }, calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH)).show();
                 break;
             case R.id.rl_sex:
+                //修改性别
                 new AlertDialog.Builder(this)
                         .setTitle("别选错了哦！")
                         .setIcon(android.R.drawable.ic_dialog_info)
@@ -109,6 +112,7 @@ public class InfoActivity extends AppCompatActivity implements View.OnClickListe
                 startActivityForResult(intent, 1);
                 break;
             case R.id.tv_quit:
+                //退出登录
                 ActivityCollector.finishAll();
                 intent = new Intent(this, LoginActivity.class);
                 startActivity(intent);
@@ -126,10 +130,13 @@ public class InfoActivity extends AppCompatActivity implements View.OnClickListe
         if (resultCode == RESULT_OK) {
             String back = data.getStringExtra("OK");
             if (requestCode == 1) {
+                //设置 修改后的个性签名
                 mSign.setText(back);
             } else if (requestCode == 2) {
+                //设置 修改后的帐号
                 mAccount.setText(back);
             } else if (requestCode == 3) {
+                //设置 修改后的密码
                 mPsw.setText(back);
             }
         }

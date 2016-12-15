@@ -7,5 +7,6 @@ import android.app.Application;
  */
 
 public class MyApp extends Application {
+    //存储当前登录的用户的帐号
     public static String account;
 }

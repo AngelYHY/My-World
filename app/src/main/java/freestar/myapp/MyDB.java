@@ -12,6 +12,7 @@ import java.util.List;
 
 /**
  * Created by Administrator on 2016/4/11 0011.
+ * 数据库操作类
  */
 public class MyDB {
     private Context context;
@@ -69,6 +70,7 @@ public class MyDB {
         return true;
     }
 
+    //更新性别
     public void updateSex(String sex) {
         open();
         database = helper.getWritableDatabase();
@@ -78,6 +80,7 @@ public class MyDB {
         close();
     }
 
+    //更新个性签名
     public void updateSign(String sign) {
         open();
         database = helper.getWritableDatabase();
@@ -87,6 +90,7 @@ public class MyDB {
         close();
     }
 
+    //更新帐号
     public void updateAccount(String newAccount) {
         open();
         database = helper.getWritableDatabase();
@@ -96,6 +100,7 @@ public class MyDB {
         close();
     }
 
+    //更新密码
     public void updatePsw(String psw) {
         open();
         database = helper.getWritableDatabase();
@@ -105,6 +110,7 @@ public class MyDB {
         close();
     }
 
+    //获得当前登录的用户信息
     public User getUser() {
         open();
         database = helper.getWritableDatabase();
@@ -120,6 +126,7 @@ public class MyDB {
         return user;
     }
 
+    //更新生日日期
     public void updateBirthday(String birthday) {
         open();
         database = helper.getWritableDatabase();
@@ -129,6 +136,7 @@ public class MyDB {
         close();
     }
 
+    //查询帐号是否存在
     public boolean queryAccount(String account) {
         open();
         database = helper.getWritableDatabase();
@@ -141,6 +149,7 @@ public class MyDB {
         return true;
     }
 
+    //添加日记
     public void addDiary(String title, String content) {
         open();
         SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//设置日期格式
@@ -154,6 +163,7 @@ public class MyDB {
         close();
     }
 
+    //添加生日记录
     public void addBirthday(String name, String birthday) {
         open();
         database = helper.getWritableDatabase();
@@ -165,6 +175,7 @@ public class MyDB {
         close();
     }
 
+    //获得生日记录集合
     public List<Birthday> getBirthdayList() {
         List<Birthday> list = new ArrayList<>();
         open();
@@ -184,6 +195,7 @@ public class MyDB {
         return list;
     }
 
+    //获得日记集合
     public List<Diary> getDiaryList() {
         List<Diary> list = new ArrayList<>();
         open();
@@ -204,6 +216,7 @@ public class MyDB {
         return list;
     }
 
+    //更新生日记录中的生日日期
     public void updateDate(String birthday, String id) {
         open();
         database = helper.getWritableDatabase();
@@ -213,6 +226,7 @@ public class MyDB {
         close();
     }
 
+    //删除一条生日记录
     public void deleteBirthday(String id) {
         open();
         database = helper.getWritableDatabase();

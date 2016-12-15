@@ -14,6 +14,7 @@ public class MySql extends SQLiteOpenHelper {
         super(context, "mydb.db", null, 1);
     }
 
+    //创建User Diary Birthday 三张表
     @Override
     public void onCreate(SQLiteDatabase db) {
         String sql = "create table User(id integer primary key autoincrement , account text , psw text , sex text , birthday text , sign text)";

@@ -2,6 +2,7 @@ package freestar.myapp;
 
 /**
  * Created by freestar on 2016/12/14.
+ * 用户信息实体类
  */
 
 public class User {

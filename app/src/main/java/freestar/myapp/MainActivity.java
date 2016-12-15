@@ -13,6 +13,10 @@ import java.util.List;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
+/**
+ *主界面
+ */
+
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     private List<Diary> mList;
@@ -22,6 +26,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        //销毁有记录的 activity
         ActivityCollector.finishAll();
         ActivityCollector.addActivity(this);
         CircleImageView civ = (CircleImageView) findViewById(R.id.civ);
@@ -34,6 +39,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         initData();
 
+        //初始化 RecyclerView 并 设置数据源
         RecyclerView rv = (RecyclerView) findViewById(R.id.rv);
         rv.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
         mAdapter = new DiaryAdapter(R.layout.rv_diary, mList);
@@ -41,6 +47,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     }
 
+    //从数据库中获取数据 按照 并时间最新的排序
     private void initData() {
         MyDB myDB = new MyDB(getApplicationContext());
         mList = myDB.getDiaryList();
@@ -70,6 +77,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (resultCode == RESULT_OK && requestCode == 1) {
+            //如果日记添加成功，就重新获取数据源并设置
             initData();
             mAdapter.setNewData(mList);
         }

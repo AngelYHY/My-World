@@ -2,6 +2,7 @@ package freestar.myapp;
 
 /**
  * Created by freestar on 2016/12/14.
+ * 生日实体类
  */
 
 public class Birthday {
@@ -15,7 +16,6 @@ public class Birthday {
     }
 
     private String id;
-
 
     public String getId() {
         return id;

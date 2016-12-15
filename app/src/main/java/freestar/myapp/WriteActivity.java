@@ -9,6 +9,10 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+/**
+ * 用来输入要修改的个性签名、帐号、密码的 activity
+ */
+
 public class WriteActivity extends AppCompatActivity implements View.OnClickListener {
     private String mKind;
     private EditText mContent;
@@ -29,6 +33,7 @@ public class WriteActivity extends AppCompatActivity implements View.OnClickList
         MyDB myDB = new MyDB(getApplicationContext());
         switch (mKind) {
             case "sign": {
+                //修改个性签名
                 myDB.updateSign(content);
                 Intent intent = new Intent();
                 intent.putExtra("OK", content);
@@ -36,7 +41,9 @@ public class WriteActivity extends AppCompatActivity implements View.OnClickList
                 break;
             }
             case "account":
+                //就判断输入的帐号是否为空
                 if (!TextUtils.isEmpty(content)) {
+                    //判断新的帐号是否已存在，若不存在就更新帐号
                     if (myDB.queryAccount(content)) {
                         myDB.updateAccount(content);
                         Intent intent = new Intent();
@@ -48,13 +55,18 @@ public class WriteActivity extends AppCompatActivity implements View.OnClickList
                 } else {
                     Toast.makeText(this, "帐号不能为空", Toast.LENGTH_SHORT).show();
                 }
-
                 break;
             case "psw": {
-                myDB.updatePsw(content);
-                Intent intent = new Intent();
-                intent.putExtra("OK", content);
-                setResult(RESULT_OK, intent);
+                //更新密码
+                if (!TextUtils.isEmpty(content)) {
+                    myDB.updatePsw(content);
+                    Intent intent = new Intent();
+                    intent.putExtra("OK", content);
+                    setResult(RESULT_OK, intent);
+                } else {
+                    Toast.makeText(this, "密码不能为空", Toast.LENGTH_SHORT).show();
+                    return;
+                }
                 break;
             }
         }

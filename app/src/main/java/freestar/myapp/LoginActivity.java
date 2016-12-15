@@ -32,11 +32,14 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         String account = mAccount.getText().toString().trim();
         String psw = mPsw.getText().toString().trim();
         switch (view.getId()) {
+            //登录
             case R.id.tv_login:
+                //判断输入的帐号密码是否为空
                 if (TextUtils.isEmpty(account) || TextUtils.isEmpty(psw)) {
                     Toast.makeText(this, "帐号或密码不能为空", Toast.LENGTH_SHORT).show();
                 } else {
                     MyDB mydb = new MyDB(getApplicationContext());
+                    //判断帐号密码是否匹配
                     if (mydb.confirm(account, psw)) {
                         MyApp.account=account;
                         Intent intent = new Intent(this, MainActivity.class);

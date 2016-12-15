@@ -7,6 +7,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+/**
+ * 我的日记
+ */
 public class DiaryActivity extends AppCompatActivity implements View.OnClickListener {
 
     private EditText mTitle;
@@ -29,10 +32,13 @@ public class DiaryActivity extends AppCompatActivity implements View.OnClickList
         String title = mTitle.getText().toString();
         String content = mContent.getText().toString();
         switch (v.getId()) {
+            //取消
             case R.id.btn_cancel:
                 finish();
                 break;
+            //保存
             case R.id.btn_publish:
+                //添加记录
                 MyDB myDB = new MyDB(getApplicationContext());
                 myDB.addDiary(title, content);
                 setResult(RESULT_OK, new Intent());
